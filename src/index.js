@@ -33,7 +33,7 @@ function start(fetchFunction) {
     })
     .finally(() => {
       visibilityControl(refs.loader, 'none')
-    slimSelect = new SlimSelect({
+   const slimSelect = new SlimSelect({
   select: refs.select
 })});
   
@@ -64,7 +64,6 @@ function visibilityControl(loader, status) {
 //! Викликає дві функції, перша отримує id для пошуку повної інформації
 //! Друга створює блок, з обєкта який повертає перша
 function handleChange(ev) {
-  console.log(ev.target.value);
   visibilityControl(refs.loader, 'block');
   fetchCatByBreed(ev.target.value)
     .then(data => {
