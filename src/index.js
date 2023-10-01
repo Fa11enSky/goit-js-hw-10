@@ -58,12 +58,14 @@ function visibilityControl(loader, status) {
 //! Друга створює блок, з обєкта який повертає перша
 function handleChange(ev) {
   visibilityControl(refs.loader, 'block');
+  refs.container.classList.add('visually-hidden')
   fetchCatByBreed(ev.target.value)
     .then(data => {
       createCatBlock(data, refs.container);
     })
     .then(() => {
       visibilityControl(refs.loader, 'none');
+      refs.container.classList.remove('visually-hidden')
     })
     .catch(error => {
       visibilityControl(refs.loader, 'none');
