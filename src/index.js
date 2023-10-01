@@ -73,7 +73,8 @@ function handleChange(ev) {
       visibilityControl(refs.loader, 'none');
     })
     .catch(error => {
-      visibilityControl(refs.loader,'none')
+      visibilityControl(refs.loader, 'none')
+      console.dir(error)
       Notiflix.Notify.failure(error.message)
     });
 }
