@@ -3,8 +3,8 @@
 import Notiflix from 'notiflix';
 import axios from 'axios';
 import { fetchBreeds, fetchCatByBreed } from './js/cat-api.js';
-import SlimSelect from 'slim-select'
-import 'slim-select/dist/slimselect.css'
+import SlimSelect from 'slim-select';
+import 'slim-select/dist/slimselect.css';
 
 axios.defaults.headers.common['x-api-key'] =
   'live_zjktP70bUEcCwtKHt678pfCqUHuR5MGDhhd1Id3WRSMDaX7PH9iv5scgUh3N6TwV';
@@ -17,26 +17,21 @@ const refs = {
 };
 refs.select.addEventListener('change', handleChange);
 
-
-
-
-
-
-
 start(fetchBreeds);
 
 // ! Стартова функція, яка викликає всі інші приймає як колбек функію яка повертає проміс
 function start(fetchFunction) {
   fetchFunction()
-    .then(createMarkup).catch(error => {
+    .then(createMarkup)
+    .catch(error => {
       Notiflix.Notify.failure(error.message);
     })
     .finally(() => {
-      visibilityControl(refs.loader, 'none')
-   const slimSelect = new SlimSelect({
-  select: refs.select
-})});
-  
+      visibilityControl(refs.loader, 'none');
+      const slimSelect = new SlimSelect({
+        select: refs.select,
+      });
+    });
 }
 
 //! створення полів в селекті
@@ -52,8 +47,6 @@ function createMarkup(obj) {
   // коли розмітка ще не відмальована
   refs.select.classList.remove('visually-hidden');
 }
-
-
 
 //! контроль видимості завантаження
 function visibilityControl(loader, status) {
@@ -73,9 +66,9 @@ function handleChange(ev) {
       visibilityControl(refs.loader, 'none');
     })
     .catch(error => {
-      visibilityControl(refs.loader, 'none')
-      console.dir(error)
-      Notiflix.Notify.failure(error.message)
+      visibilityControl(refs.loader, 'none');
+      console.dir(error);
+      Notiflix.Notify.failure(error.message);
     });
 }
 
@@ -92,4 +85,3 @@ function createCatBlock(catObj, blockToInner) {
  </div>`;
   blockToInner.innerHTML = markup;
 }
-
